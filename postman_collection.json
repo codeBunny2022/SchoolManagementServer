@@ -1,0 +1,176 @@
+{
+  "info": {
+    "name": "School Management API",
+    "description": "Complete API collection for School Management System with proximity-based sorting",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["health"]
+        },
+        "description": "Check if the API is running and healthy"
+      },
+      "response": []
+    },
+    {
+      "name": "API Documentation",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/",
+          "host": ["{{baseUrl}}"],
+          "path": [""]
+        },
+        "description": "Get API documentation and available endpoints"
+      },
+      "response": []
+    },
+    {
+      "name": "Add School",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Central High School\",\n  \"address\": \"123 Education Street, Downtown, NY 10001\",\n  \"latitude\": 40.7128,\n  \"longitude\": -74.0060\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/addSchool",
+          "host": ["{{baseUrl}}"],
+          "path": ["addSchool"]
+        },
+        "description": "Add a new school to the database. All fields are required and validated."
+      },
+      "response": []
+    },
+    {
+      "name": "Add School - Invalid Data",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"\",\n  \"address\": \"Invalid Address\",\n  \"latitude\": 200,\n  \"longitude\": 300\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/addSchool",
+          "host": ["{{baseUrl}}"],
+          "path": ["addSchool"]
+        },
+        "description": "Test validation with invalid data"
+      },
+      "response": []
+    },
+    {
+      "name": "List Schools - New York",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/listSchools?latitude=40.7128&longitude=-74.0060",
+          "host": ["{{baseUrl}}"],
+          "path": ["listSchools"],
+          "query": [
+            {
+              "key": "latitude",
+              "value": "40.7128"
+            },
+            {
+              "key": "longitude",
+              "value": "-74.0060"
+            }
+          ]
+        },
+        "description": "Get schools sorted by proximity to New York City coordinates"
+      },
+      "response": []
+    },
+    {
+      "name": "List Schools - Los Angeles",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/listSchools?latitude=34.0522&longitude=-118.2437",
+          "host": ["{{baseUrl}}"],
+          "path": ["listSchools"],
+          "query": [
+            {
+              "key": "latitude",
+              "value": "34.0522"
+            },
+            {
+              "key": "longitude",
+              "value": "-118.2437"
+            }
+          ]
+        },
+        "description": "Get schools sorted by proximity to Los Angeles coordinates"
+      },
+      "response": []
+    },
+    {
+      "name": "List Schools - Missing Coordinates",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/listSchools",
+          "host": ["{{baseUrl}}"],
+          "path": ["listSchools"]
+        },
+        "description": "Test error handling when coordinates are missing"
+      },
+      "response": []
+    },
+    {
+      "name": "List Schools - Invalid Coordinates",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/listSchools?latitude=200&longitude=300",
+          "host": ["{{baseUrl}}"],
+          "path": ["listSchools"],
+          "query": [
+            {
+              "key": "latitude",
+              "value": "200"
+            },
+            {
+              "key": "longitude",
+              "value": "300"
+            }
+          ]
+        },
+        "description": "Test error handling with invalid coordinate values"
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ]
+} 
