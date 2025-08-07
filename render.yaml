@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: school-management-server
+    env: node
+    buildCommand: npm install && cd frontend && npm install && npm run build
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DB_HOST
+        value: your-database-host
+      - key: DB_USER
+        value: your-database-user
+      - key: DB_PASSWORD
+        value: your-database-password
+      - key: DB_NAME
+        value: your-database-name
+      - key: DB_PORT
+        value: 3306 

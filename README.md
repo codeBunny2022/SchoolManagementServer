@@ -49,9 +49,41 @@ The application will be available at:
 - **API Health**: http://localhost:3000/health
 - **API Docs**: http://localhost:3000/api
 
-## 🌐 Replit Deployment
+## 🌐 Deployment Options
 
-### Automatic Deployment
+### Option 1: Render.com (Recommended)
+1. **Sign up** at [render.com](https://render.com)
+2. **Connect your GitHub repository**
+3. **Create a new Web Service**
+4. **Configure:**
+   - Build Command: `npm install && cd frontend && npm install && npm run build`
+   - Start Command: `node server.js`
+   - Environment Variables: Add your database credentials
+5. **Deploy automatically**
+
+### Option 2: Railway.app
+1. **Sign up** at [railway.app](https://railway.app)
+2. **Connect GitHub repository**
+3. **Deploy automatically**
+4. **Add environment variables** for database
+
+### Option 3: Heroku
+1. **Install Heroku CLI**
+2. **Create Heroku app:**
+   ```bash
+   heroku create your-app-name
+   ```
+3. **Add buildpacks:**
+   ```bash
+   heroku buildpacks:add heroku/nodejs
+   ```
+4. **Set environment variables**
+5. **Deploy:**
+   ```bash
+   git push heroku main
+   ```
+
+### Option 4: Replit
 1. **Fork this repository** to your Replit account
 2. **Click "Run"** - the deployment script will automatically:
    - Install all dependencies
@@ -59,7 +91,7 @@ The application will be available at:
    - Set up the database
    - Start the server
 
-### Manual Deployment
+### Manual Deployment (Any Platform)
 If automatic deployment doesn't work:
 
 1. **Install dependencies**
